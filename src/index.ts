@@ -8,16 +8,16 @@ import IRandomGenerator from './RandomGenerator';
  * @classdesc Random class
  */
 export default class Random {
-  private random: IRandomGenerator;
+  private _random: IRandomGenerator;
   /**
    * @param [seedOrRandom=Math.random] - Control the random number generator used by the Random class instance. Pass a random number generator function with a uniform distribution over the half-open interval [0, 1[. If seed will pass it to ml-xsadd to create a seeded random number generator. If undefined will use Math.random.
    */
   constructor(seedOrRandom: IRandomGenerator | number = Math.random) {
     if (typeof seedOrRandom === 'number') {
       const xsadd: any = new XSAdd(seedOrRandom);
-      this.random = xsadd.random;
+      this._random = xsadd.random;
     } else {
-      this.random = seedOrRandom;
+      this._random = seedOrRandom;
     }
   }
 
@@ -35,8 +35,12 @@ export default class Random {
     options?: IChoiceOptions
   ): Array<T | number> {
     if (typeof values === 'number') {
-      return choice(values, options, this.random);
+      return choice(values, options, this._random);
     }
-    return choice(values, options, this.random);
+    return choice(values, options, this._random);
+  }
+
+  public random(): number {
+    return this._random();
   }
 }

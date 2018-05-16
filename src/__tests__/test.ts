@@ -2,7 +2,7 @@ import * as XSAdd from 'ml-xsadd';
 import Random from '..';
 
 let random: Random;
-describe('test random', () => {
+describe('random.choice', () => {
   beforeEach(() => {
     random = new Random(28);
   });
@@ -49,5 +49,16 @@ describe('test random', () => {
         })
         .sort()
     ).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  });
+});
+
+describe('random.random', () => {
+  it('should generate random numbers', () => {
+    const random = new Random(14);
+    let r = [];
+    for (let i = 0; i < 10; i++) {
+      r.push(random.random());
+    }
+    expect(r).toMatchSnapshot();
   });
 });

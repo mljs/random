@@ -1,45 +1,35 @@
-/**
- * Returns an array of elements selected
- * @return {Array<number>}
- */
-export default function randomChoice(elements, options = {}) {
-  if (typeof elements === 'number') {
-    elements = getArray(elements);
-  } else {
-    elements = elements.slice();
-  }
-  options = Object.assign(
-    {},
-    {
-      size: 1,
-      replace: false,
-      random: Math.random
-    },
-    options
-  );
+import XSAdd from 'ml-xsadd';
 
-  if (options.replace === false && options.size > elements.length) {
-    throw new Error('size option is too large');
-  }
-  const result = [];
-  for (let i = 0; i < options.size; i++) {
-    const index = randomIndex(elements.length, options.random);
-    result.push(elements[index]);
-    if (!options.replace) {
-      elements.splice(index, 1);
+import choice from './choice';
+
+/**
+ * @classdesc Random class
+ */
+export default class Random {
+  /**
+   * @param {function|number} [seedOrRandom=Math.random] - Control the random number generator used by the Random class instance. Pass a random number generator function with a uniform distribution over the half-open interval [0, 1[. If seed will pass it to ml-xsadd to create a seeded random number generator. If undefined will use Math.random.
+   */
+  constructor(seedOrRandom) {
+    if (typeof seedOrRandom === 'number') {
+      const xsadd = new XSAdd(seedOrRandom);
+      this.random = xsadd.random;
+    } else if (seedOrRandom === undefined) {
+      this.random = Math.random;
+    } else {
+      this.random = seedOrRandom;
     }
   }
-  return result;
-}
 
-function getArray(n) {
-  const arr = [];
-  for (let i = 0; i < n; i++) {
-    arr.push(i);
+  /**
+   * Returns an array of elements choosen from a list
+   * @param {Array|number} values  - The values to choose from. If a number, the list will be a range of integer from 0 to that number.
+   * @param {object} [options] - option object
+   * @param {number} [options.size=1] - number of elements to select from the list
+   * @param {boolean} [options.replace=false] - with or without replacement.
+   * @return {Array<number>}
+   */
+  choice(values, options = {}) {
+    options.random = this.random;
+    return choice(values, options);
   }
-  return arr;
-}
-
-function randomIndex(n, random) {
-  return Math.floor(random() * n);
 }

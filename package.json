@@ -4,10 +4,7 @@
   "description": "choose randomly from a selection of elements",
   "main": "lib/index.js",
   "module": "src/index.js",
-  "files": [
-    "lib",
-    "src"
-  ],
+  "files": ["lib", "src"],
   "scripts": {
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",

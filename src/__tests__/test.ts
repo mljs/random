@@ -1,3 +1,4 @@
+import * as XSAdd from 'ml-xsadd';
 import Random from '..';
 
 let random: Random;
@@ -6,6 +7,7 @@ describe('test random', () => {
     random = new Random(28);
   });
   it('should return all elements', () => {
+    random = new Random();
     expect(random.choice(13, { size: 13 }).sort((a, b) => a - b)).toEqual([
       0,
       1,
@@ -30,6 +32,8 @@ describe('test random', () => {
   });
 
   it('should select elements without replacement', () => {
+    const xsadd = new XSAdd(28);
+    random = new Random(xsadd.random);
     expect(random.choice(10, { size: 10 })).toMatchSnapshot();
   });
 

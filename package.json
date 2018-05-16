@@ -4,14 +4,11 @@
   "description": "choose randomly from a selection of elements",
   "main": "lib/index.js",
   "module": "src/index.js",
-  "files": [
-    "lib",
-    "src"
-  ],
+  "files": ["lib", "src"],
   "scripts": {
-    "prepublishOnly": "rollup -c",
-    "test": "run-s test-only eslint",
-    "test-travis": "eslint src && jest --coverage && codecov",
+    "prepublishOnly": "run-s tsc",
+    "test": "run-s test-only tslint",
+    "test-travis": "npm run tslint && jest --coverage && codecov",
     "test-only": "jest",
     "tsc": "tsc",
     "tslint": "tslint --project tsconfig.base.json",
@@ -34,14 +31,7 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
   },
   "dependencies": {
     "ml-xsadd": "^1.0.0"
@@ -50,13 +40,8 @@
     "@types/jest": "^22.2.3",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "codecov": "^3.0.2",
-    "eslint": "^4.19.1",
-    "eslint-config-cheminfo": "^1.17.4",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-jest": "^21.15.1",
     "jest": "^22.4.3",
     "npm-run-all": "^4.1.3",
-    "rollup": "^0.59.0",
     "ts-jest": "^22.4.6",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.12.0",

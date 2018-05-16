@@ -54,8 +54,8 @@ describe('random.choice', () => {
 
 describe('random.random', () => {
   it('should generate random numbers', () => {
-    const random = new Random(14);
-    let r = [];
+    random = new Random(14);
+    const r = [];
     for (let i = 0; i < 10; i++) {
       r.push(random.random());
     }

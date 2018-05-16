@@ -1,4 +1,4 @@
-import * as XSAdd from 'ml-xsadd';
+import XSAdd from './ml-xsadd';
 import choice from './choice';
 import { IChoiceOptions } from './Options';
 import IRandomGenerator from './RandomGenerator';

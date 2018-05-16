@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test random-choice should choose values with replacement 1`] = `
+exports[`test random should choose values with replacement 1`] = `
 Array [
   4,
   5,
@@ -25,7 +25,7 @@ Array [
 ]
 `;
 
-exports[`test random-choice should select elements without replacement 1`] = `
+exports[`test random should select elements without replacement 1`] = `
 Array [
   4,
   5,

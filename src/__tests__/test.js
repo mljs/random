@@ -3,7 +3,7 @@ import Random from '..';
 import XSAdd from 'ml-xsadd';
 
 let random;
-describe('test random-choice', () => {
+describe('test random', () => {
   beforeEach(() => {
     random = new Random(28);
   });

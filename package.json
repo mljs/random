@@ -1,5 +1,5 @@
 {
-  "name": "ml-random-choice",
+  "name": "ml-random",
   "version": "0.0.0",
   "description": "choose randomly from a selection of elements",
   "main": "lib/index.js",
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mljs/random-choice.git"
+    "url": "git+https://github.com/mljs/random.git"
   },
   "keywords": [],
   "author": "Daniel Kostro",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mljs/random-choice/issues"
+    "url": "https://github.com/mljs/random/issues"
   },
-  "homepage": "https://github.com/mljs/random-choice#readme",
+  "homepage": "https://github.com/mljs/random#readme",
   "jest": {
     "testEnvironment": "node"
   },

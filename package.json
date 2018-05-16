@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "module": "lib-es6/index.js",
   "files": ["lib", "lib-es6", "src"],
+  "types": "lib/index.d.ts",
   "scripts": {
     "clean": "shx rm -rf lib-es6 lib",
     "prepublishOnly": "run-s tsc",

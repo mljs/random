@@ -24,7 +24,7 @@ describe('test random', () => {
   });
 
   it('should throw because size option is too large', () => {
-    expect(function() {
+    expect(() => {
       random.choice(2, { size: 3 });
     }).toThrow(/too large/);
   });

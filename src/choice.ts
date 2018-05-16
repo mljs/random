@@ -1,5 +1,5 @@
-import IRandomGenerator from './RandomGenerator';
 import { IChoiceOptions } from './Options';
+import IRandomGenerator from './RandomGenerator';
 
 function randomChoice<T>(
   values: T[],
@@ -16,7 +16,7 @@ function randomChoice<T>(
   options: IChoiceOptions = {},
   random: IRandomGenerator = Math.random
 ): Array<T | number> {
-  let { size = 1, replace = false } = options;
+  const { size = 1, replace = false } = options;
   let valuesArr;
   if (typeof values === 'number') {
     valuesArr = getArray(values);

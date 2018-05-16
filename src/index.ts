@@ -1,7 +1,7 @@
 import * as XSAdd from 'ml-xsadd';
-import IRandomGenerator from './RandomGenerator';
-import { IChoiceOptions } from './Options';
 import choice from './choice';
+import { IChoiceOptions } from './Options';
+import IRandomGenerator from './RandomGenerator';
 
 /**
  * @classdesc Random class

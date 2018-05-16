@@ -23,17 +23,8 @@ function randomChoice<T>(
   } else {
     valuesArr = values.slice();
   }
-  options = Object.assign(
-    {},
-    {
-      size: 1,
-      replace: false,
-      random: Math.random
-    },
-    options
-  );
 
-  if (options.replace === false && size > valuesArr.length) {
+  if (replace === false && size > valuesArr.length) {
     throw new Error('size option is too large');
   }
   const result = [];

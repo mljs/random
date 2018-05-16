@@ -4,7 +4,7 @@ import XSAdd from 'ml-xsadd';
 
 describe('test random-choice', () => {
   it('should return all elements', () => {
-    expect(randomChoice(13, { size: 13 }).sort()).toEqual([
+    expect(randomChoice(13, { size: 13 }).sort((a, b) => a - b)).toEqual([
       0,
       1,
       2,
@@ -23,7 +23,7 @@ describe('test random-choice', () => {
 
   it('should throw because size option is too large', () => {
     expect(function () {
-      randomChoice([1, 2], { size: 3 });
+      randomChoice(2, { size: 3 });
     }).toThrow(/too large/);
   });
 

@@ -1,4 +1,4 @@
-const XSAdd: any = require('ml-xsadd');
+import * as XSAdd from 'ml-xsadd';
 import IRandomGenerator from './RandomGenerator';
 import { IChoiceOptions } from './Options';
 import choice from './choice';

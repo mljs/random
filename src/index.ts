@@ -43,4 +43,12 @@ export default class Random {
   public random(): number {
     return this.randomGenerator();
   }
+
+  public randInt(low: number, high?: number): number {
+    if (high === undefined) {
+      high = low;
+      low = 0;
+    }
+    return low + Math.floor(this.randomGenerator() * (high - low));
+  }
 }

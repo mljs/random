@@ -96,3 +96,43 @@ describe('random.random', () => {
     expect(r).toMatchSnapshot();
   });
 });
+
+describe('random.randInt', () => {
+  it('should generate integers within an range with uniform distribution', () => {
+    const n = 50000;
+    const low = 4;
+    const high = 8;
+    const values = [];
+    for (let i = 0; i < n; i++) {
+      values.push(random.randInt(low, high));
+    }
+    const expFreq = 1 / (high - low);
+    expect(freq(values, 4)).toBeCloseTo(expFreq);
+    expect(freq(values, 5)).toBeCloseTo(expFreq);
+    expect(freq(values, 6)).toBeCloseTo(expFreq);
+    expect(freq(values, 7)).toBeCloseTo(expFreq);
+
+    expect(freq(values, 3)).toEqual(0);
+    expect(freq(values, 8)).toEqual(0);
+  });
+
+  it('if only low is specified, low is 0 and high is low', () => {
+    const rand1 = new Random(12);
+    const rand2 = new Random(12);
+    const n = 20;
+    const values1 = [];
+    const values2 = [];
+    for (let i = 0; i < n; i++) {
+      values1.push(rand1.randInt(2));
+      values2.push(rand2.randInt(0, 2));
+    }
+    expect(values1).toEqual(values2);
+  });
+});
+
+function freq(arr: number[], n: number) {
+  return (
+    arr.reduce((prev, current) => (current === n ? prev + 1 : prev), 0) /
+    arr.length
+  );
+}

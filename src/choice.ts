@@ -1,6 +1,8 @@
 import { IChoiceOptions } from './Options';
 import IRandomGenerator from './RandomGenerator';
 
+const PROB_TOLERANCE = 0.00000001;
+
 function randomChoice<T>(
   values: T[],
   options?: IChoiceOptions,
@@ -43,8 +45,12 @@ function randomChoice<T>(
       cumSum[i] = cumSum[i - 1] + probabilities[i];
     }
 
-    if (Math.abs(1 - cumSum[cumSum.length - 1]) > Number.EPSILON) {
-      throw new Error('probabilities should sum to 1');
+    if (Math.abs(1 - cumSum[cumSum.length - 1]) > PROB_TOLERANCE) {
+      throw new Error(
+        `probabilities should sum to 1, but instead sums to ${
+          cumSum[cumSum.length - 1]
+        }`
+      );
     }
   }
 

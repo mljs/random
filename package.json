@@ -4,7 +4,11 @@
   "description": "choose randomly from a selection of elements",
   "main": "lib/index.js",
   "module": "lib-es6/index.js",
-  "files": ["lib", "lib-es6", "src"],
+  "files": [
+    "lib",
+    "lib-es6",
+    "src"
+  ],
   "types": "lib/index.d.ts",
   "scripts": {
     "clean": "shx rm -rf lib-es6 lib",
@@ -36,7 +40,14 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   },
   "dependencies": {
     "ml-xsadd": "^1.0.0"

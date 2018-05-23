@@ -67,7 +67,7 @@ export default class Random {
    * @return - The list of drawn numbers.
    */
   public randomSample(size: number): number[] {
-    let result = [];
+    const result = [];
     for (let i = 0; i < size; i++) {
       result.push(this.random());
     }

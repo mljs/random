@@ -101,8 +101,8 @@ describe('random.randomSample', () => {
   it('should generate an array of random numbers', () => {
     const numbers = random.randomSample(10);
     expect(numbers).toHaveLength(10);
-    numbers.forEach(number => expect(number).toBeLessThan(1));
-    numbers.forEach(number => expect(number).toBeGreaterThanOrEqual(0));
+    numbers.forEach(num => expect(num).toBeLessThan(1));
+    numbers.forEach(num => expect(num).toBeGreaterThanOrEqual(0));
     expect(numbers).toMatchSnapshot();
   });
 });

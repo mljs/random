@@ -16,12 +16,31 @@ function randomChoice<T>(
   options: IChoiceOptions = {},
   random: IRandomGenerator = Math.random
 ): Array<T | number> {
-  const { size = 1, replace = false } = options;
+  const { size = 1, replace = false, probabilities } = options;
+
   let valuesArr;
+  let cumSum;
   if (typeof values === 'number') {
     valuesArr = getArray(values);
   } else {
     valuesArr = values.slice();
+  }
+
+  if (probabilities) {
+    // check input is sane
+    if (probabilities.length !== valuesArr.length) {
+      throw new Error(
+        'the length of probabilities option should be equal to the number of choices'
+      );
+    }
+    cumSum = [probabilities[0]];
+    for (let i = 1; i < probabilities.length; i++) {
+      cumSum[i] = cumSum[i - 1] + probabilities[i];
+    }
+
+    if (Math.abs(1 - cumSum[cumSum.length - 1]) > Number.EPSILON) {
+      throw new Error('probabilities should sum to 1');
+    }
   }
 
   if (replace === false && size > valuesArr.length) {
@@ -29,7 +48,7 @@ function randomChoice<T>(
   }
   const result = [];
   for (let i = 0; i < size; i++) {
-    const index = randomIndex(valuesArr.length, random);
+    const index = randomIndex(valuesArr.length, random, cumSum);
     result.push(valuesArr[index]);
     if (!replace) {
       valuesArr.splice(index, 1);
@@ -46,8 +65,17 @@ function getArray(n: number) {
   return arr;
 }
 
-function randomIndex(n: number, random: IRandomGenerator) {
-  return Math.floor(random() * n);
+function randomIndex(n: number, random: IRandomGenerator, cumSum?: number[]) {
+  const rand = random();
+  if (!cumSum) {
+    return Math.floor(rand * n);
+  } else {
+    let idx = 0;
+    while (rand > cumSum[idx]) {
+      idx++;
+    }
+    return idx;
+  }
 }
 
 export default randomChoice;

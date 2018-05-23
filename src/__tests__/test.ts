@@ -50,6 +50,34 @@ describe('random.choice', () => {
         .sort()
     ).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
+
+  it('should produce choice given probabilities', () => {
+    const samples = 10000;
+    const r = random.choice(2, {
+      size: samples,
+      replace: true,
+      probabilities: [0.3, 0.7]
+    });
+    const count = r.reduce(
+      (prev, current) => (current === 0 ? prev + 1 : prev),
+      0
+    );
+    expect(count / samples).toBeCloseTo(0.3, 2);
+  });
+
+  it('should throw if probabilities option has the wrong size', () => {
+    expect(() => {
+      random.choice(3, { replace: true, probabilities: [0.5, 0.5] });
+    }).toThrow(
+      'the length of probabilities option should be equal to the number of choices'
+    );
+  });
+
+  it('should throw if probabilities option does not sum to 1', () => {
+    expect(() => {
+      random.choice(3, { replace: true, probabilities: [0.1, 0.5, 0.4001] });
+    }).toThrow('probabilities should sum to 1');
+  });
 });
 
 describe('random.random', () => {

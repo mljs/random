@@ -97,6 +97,16 @@ describe('random.random', () => {
   });
 });
 
+describe('random.randomSample', () => {
+  it('should generate an array of random numbers', () => {
+    const numbers = random.randomSample(10);
+    expect(numbers).toHaveLength(10);
+    numbers.forEach(number => expect(number).toBeLessThan(1));
+    numbers.forEach(number => expect(number).toBeGreaterThanOrEqual(0));
+    expect(numbers).toMatchSnapshot();
+  });
+});
+
 describe('random.randInt', () => {
   it('should generate integers within an range with uniform distribution', () => {
     const n = 50000;

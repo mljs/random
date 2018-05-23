@@ -40,15 +40,37 @@ export default class Random {
     return choice(values, options, this.randomGenerator);
   }
 
+  /**
+   * Draw a random number from a uniform distribution on [0,1)
+   * @return The random number
+   */
   public random(): number {
     return this.randomGenerator();
   }
 
+  /**
+   * Draw a random integer from a uniform distribution on [low, high). If only low is specified, the number is drawn on [0, low)
+   * @param low - The lower bound of the uniform distribution interval.
+   * @param high - The higher bound of the uniform distribution interval.
+   */
   public randInt(low: number, high?: number): number {
     if (high === undefined) {
       high = low;
       low = 0;
     }
     return low + Math.floor(this.randomGenerator() * (high - low));
+  }
+
+  /**
+   * Draw several random number from a uniform distribution on [0, 1)
+   * @param size - The number of number to draw
+   * @return - The list of drawn numbers.
+   */
+  public randomSample(size: number): number[] {
+    let result = [];
+    for (let i = 0; i < size; i++) {
+      result.push(this.random());
+    }
+    return result;
   }
 }

@@ -27,6 +27,11 @@ function randomChoice<T>(
   }
 
   if (probabilities) {
+    if (!replace) {
+      throw new Error(
+        'choice with probabilities and no replacement is not implemented'
+      );
+    }
     // check input is sane
     if (probabilities.length !== valuesArr.length) {
       throw new Error(

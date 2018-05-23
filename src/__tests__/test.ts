@@ -78,6 +78,12 @@ describe('random.choice', () => {
       random.choice(3, { replace: true, probabilities: [0.1, 0.5, 0.4001] });
     }).toThrow('probabilities should sum to 1');
   });
+
+  it('choice with probabilities and no replacement not implemented', () => {
+    expect(() => {
+      random.choice(3, { replace: false, probabilities: [0.1, 0.5, 0.4] });
+    }).toThrow(/not implemented/);
+  });
 });
 
 describe('random.random', () => {

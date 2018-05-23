@@ -11,7 +11,7 @@ export interface IChoiceOptions {
    */
   replace?: boolean;
   /**
-   * The probabilities for each element. Probabilities should sum to 1 and be the same length as the values.
+   * The probabilities associated with each element. Probabilities should sum to 1 and be the same length as the values. If not specified a uniform distribution is assumed.
    */
   probabilities?: number[];
 }

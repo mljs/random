@@ -12,6 +12,7 @@
     "test": "run-s test-only tslint",
     "test-travis": "npm run tslint && jest --coverage && codecov",
     "test-only": "jest",
+    "test-coverage": "jest --coverage",
     "tsc": "run-s clean tsc-es6 tsc-es5",
     "tsc-es5": "tsc",
     "tsc-es6": "tsc --project tsconfig.es6.json",

@@ -1,4 +1,4 @@
-import * as XSAdd from 'ml-xsadd';
+import XSAdd from 'ml-xsadd';
 import Random from '..';
 
 let random: Random;

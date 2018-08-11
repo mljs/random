@@ -1,5 +1,5 @@
 // tslint:disable-next-line
-const XSAdd = require('ml-xsadd');
+import XSAdd from 'ml-xsadd';
 import choice from './choice';
 import { IChoiceOptions } from './Options';
 import IRandomGenerator from './RandomGenerator';

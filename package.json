@@ -6,8 +6,7 @@
   "module": "lib-es6/index.js",
   "files": [
     "lib",
-    "lib-es6",
-    "src"
+    "lib-es6"
   ],
   "types": "lib/index.d.ts",
   "scripts": {
@@ -54,7 +53,6 @@
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "codecov": "^3.0.4",
     "jest": "^23.5.0",
     "npm-run-all": "^4.1.3",

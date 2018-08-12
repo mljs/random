@@ -1,30 +1,27 @@
-# random
+# ml-random
 
-  [![NPM version][npm-image]][npm-url]
-  [![build status][travis-image]][travis-url]
-  [![Test coverage][codecov-image]][codecov-url]
-  [![npm download][download-image]][download-url]
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![Test coverage][codecov-image]][codecov-url]
+[![npm download][download-image]][download-url]
 
-choose randomly from a selection of elements.
+Randomness utilities from a selection of elements.
 
 ## Installation
 
-`$ npm install --save ml-random`
+`$ npm install ml-random`
 
 ## Usage
 
 ```js
-import library from 'ml-random';
-
-const result = library(args);
-// result is ...
+const Random = require('ml-random').default;
 ```
 
 ## [API Documentation](https://mljs.github.io/random/)
 
 ## License
 
-  [MIT](./LICENSE)
+[MIT](./LICENSE)
 
 [npm-image]: https://img.shields.io/npm/v/ml-random.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/ml-random

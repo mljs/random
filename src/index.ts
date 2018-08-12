@@ -1,4 +1,3 @@
-// tslint:disable-next-line
 import XSAdd from 'ml-xsadd';
 import choice from './choice';
 import { IChoiceOptions } from './Options';

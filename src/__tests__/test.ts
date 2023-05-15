@@ -1,4 +1,5 @@
 import XSAdd from 'ml-xsadd';
+
 import Random from '..';
 
 let random: Random;
@@ -9,19 +10,7 @@ describe('random.choice', () => {
   it('should return all elements', () => {
     random = new Random();
     expect(random.choice(13, { size: 13 }).sort((a, b) => a - b)).toEqual([
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
     ]);
   });
 
@@ -45,9 +34,9 @@ describe('random.choice', () => {
     expect(
       random
         .choice([1, 2, 3, 4, 5, 6, 7, 8, 9], {
-          size: 9
+          size: 9,
         })
-        .sort()
+        .sort((a, b) => a - b),
     ).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
 
@@ -56,11 +45,11 @@ describe('random.choice', () => {
     const r = random.choice(2, {
       size: samples,
       replace: true,
-      probabilities: [0.3, 0.7]
+      probabilities: [0.3, 0.7],
     });
     const count = r.reduce(
       (prev, current) => (current === 0 ? prev + 1 : prev),
-      0
+      0,
     );
     expect(count / samples).toBeCloseTo(0.3, 2);
   });
@@ -69,7 +58,7 @@ describe('random.choice', () => {
     expect(() => {
       random.choice(3, { replace: true, probabilities: [0.5, 0.5] });
     }).toThrow(
-      'the length of probabilities option should be equal to the number of choices'
+      'the length of probabilities option should be equal to the number of choices',
     );
   });
 
@@ -89,7 +78,7 @@ describe('random.choice', () => {
 describe('random.random', () => {
   it('should generate random numbers', () => {
     random = new Random(14);
-    const r = [];
+    const r: number[] = [];
     for (let i = 0; i < 10; i++) {
       r.push(random.random());
     }
@@ -101,8 +90,8 @@ describe('random.randomSample', () => {
   it('should generate an array of random numbers', () => {
     const numbers = random.randomSample(10);
     expect(numbers).toHaveLength(10);
-    numbers.forEach(num => expect(num).toBeLessThan(1));
-    numbers.forEach(num => expect(num).toBeGreaterThanOrEqual(0));
+    numbers.forEach((num) => expect(num).toBeLessThan(1));
+    numbers.forEach((num) => expect(num).toBeGreaterThanOrEqual(0));
     expect(numbers).toMatchSnapshot();
   });
 });
@@ -112,7 +101,7 @@ describe('random.randInt', () => {
     const n = 50000;
     const low = 4;
     const high = 8;
-    const values = [];
+    const values: number[] = [];
     for (let i = 0; i < n; i++) {
       values.push(random.randInt(low, high));
     }
@@ -130,8 +119,8 @@ describe('random.randInt', () => {
     const rand1 = new Random(12);
     const rand2 = new Random(12);
     const n = 20;
-    const values1 = [];
-    const values2 = [];
+    const values1: number[] = [];
+    const values2: number[] = [];
     for (let i = 0; i < n; i++) {
       values1.push(rand1.randInt(2));
       values2.push(rand2.randInt(0, 2));

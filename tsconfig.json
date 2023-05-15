@@ -1,5 +1,12 @@
 {
-  "extends": "./tsconfig.base.json",
-  "include": ["./src/**/*"],
-  "exclude": ["./src/**/__tests__"]
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node16",
+    "noImplicitAny": false,
+    "outDir": "lib",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2020"
+  },
+  "include": ["./src/**/*"]
 }

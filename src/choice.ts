@@ -6,22 +6,22 @@ const PROB_TOLERANCE = 0.00000001;
 function randomChoice<T>(
   values: T[],
   options?: IChoiceOptions,
-  random?: IRandomGenerator
+  random?: IRandomGenerator,
 ): T[];
-function randomChoice<T>(
+function randomChoice(
   values: number,
   options?: IChoiceOptions,
-  random?: IRandomGenerator
+  random?: IRandomGenerator,
 ): number[];
 function randomChoice<T>(
   values: T[] | number,
   options: IChoiceOptions = {},
-  random: IRandomGenerator = Math.random
+  random: IRandomGenerator = Math.random,
 ): Array<T | number> {
   const { size = 1, replace = false, probabilities } = options;
 
-  let valuesArr;
-  let cumSum;
+  let valuesArr: number[] | T[];
+  let cumSum: number[] | undefined;
   if (typeof values === 'number') {
     valuesArr = getArray(values);
   } else {
@@ -31,13 +31,13 @@ function randomChoice<T>(
   if (probabilities) {
     if (!replace) {
       throw new Error(
-        'choice with probabilities and no replacement is not implemented'
+        'choice with probabilities and no replacement is not implemented',
       );
     }
     // check input is sane
     if (probabilities.length !== valuesArr.length) {
       throw new Error(
-        'the length of probabilities option should be equal to the number of choices'
+        'the length of probabilities option should be equal to the number of choices',
       );
     }
     cumSum = [probabilities[0]];
@@ -49,15 +49,15 @@ function randomChoice<T>(
       throw new Error(
         `probabilities should sum to 1, but instead sums to ${
           cumSum[cumSum.length - 1]
-        }`
+        }`,
       );
     }
   }
 
-  if (replace === false && size > valuesArr.length) {
+  if (!replace && size > valuesArr.length) {
     throw new Error('size option is too large');
   }
-  const result = [];
+  const result: Array<number | T> = [];
   for (let i = 0; i < size; i++) {
     const index = randomIndex(valuesArr.length, random, cumSum);
     result.push(valuesArr[index]);
@@ -69,14 +69,18 @@ function randomChoice<T>(
 }
 
 function getArray(n: number) {
-  const arr = [];
+  const arr: number[] = [];
   for (let i = 0; i < n; i++) {
     arr.push(i);
   }
   return arr;
 }
 
-function randomIndex(n: number, random: IRandomGenerator, cumSum?: number[]) {
+function randomIndex(
+  n: number,
+  random: IRandomGenerator,
+  cumSum: number[] | undefined,
+) {
   const rand = random();
   if (!cumSum) {
     return Math.floor(rand * n);

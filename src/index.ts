@@ -1,7 +1,8 @@
 import XSAdd from 'ml-xsadd';
-import choice from './choice';
+
 import { IChoiceOptions } from './Options';
 import IRandomGenerator from './RandomGenerator';
+import choice from './choice';
 
 /**
  * @classdesc Random class
@@ -13,7 +14,7 @@ export default class Random {
    */
   constructor(seedOrRandom: IRandomGenerator | number = Math.random) {
     if (typeof seedOrRandom === 'number') {
-      const xsadd: any = new XSAdd(seedOrRandom);
+      const xsadd = new XSAdd(seedOrRandom);
       this.randomGenerator = xsadd.random;
     } else {
       this.randomGenerator = seedOrRandom;
@@ -31,7 +32,7 @@ export default class Random {
   public choice(values: number, options?: IChoiceOptions): number[];
   public choice<T>(
     values: T[] | number,
-    options?: IChoiceOptions
+    options?: IChoiceOptions,
   ): Array<T | number> {
     if (typeof values === 'number') {
       return choice(values, options, this.randomGenerator);
@@ -66,7 +67,7 @@ export default class Random {
    * @return - The list of drawn numbers.
    */
   public randomSample(size: number): number[] {
-    const result = [];
+    const result: number[] = [];
     for (let i = 0; i < size; i++) {
       result.push(this.random());
     }

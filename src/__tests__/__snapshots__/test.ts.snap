@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`random.choice should choose values with replacement 1`] = `
-Array [
+[
   4,
   5,
   3,
@@ -26,7 +26,7 @@ Array [
 `;
 
 exports[`random.choice should select elements without replacement 1`] = `
-Array [
+[
   4,
   5,
   3,
@@ -41,7 +41,7 @@ Array [
 `;
 
 exports[`random.random should generate random numbers 1`] = `
-Array [
+[
   0.36992722749710083,
   0.009614884853363037,
   0.11960279941558838,
@@ -56,7 +56,7 @@ Array [
 `;
 
 exports[`random.randomSample should generate an array of random numbers 1`] = `
-Array [
+[
   0.7623295187950134,
   0.24819517135620117,
   0.6318815350532532,

@@ -1,18 +1,18 @@
 import XSAdd from 'ml-xsadd';
 
 import { ChoiceOptions } from './Options';
-import IRandomGenerator from './RandomGenerator';
+import { RandomNumberGenerator } from './RandomNumberGenerator';
 import choice from './choice';
 
 /**
  * @classdesc Random class
  */
 export default class Random {
-  private randomGenerator: IRandomGenerator;
+  private randomGenerator: RandomNumberGenerator;
   /**
    * @param [seedOrRandom=Math.random] - Control the random number generator used by the Random class instance. Pass a random number generator function with a uniform distribution over the half-open interval [0, 1[. If seed will pass it to ml-xsadd to create a seeded random number generator. If undefined will use Math.random.
    */
-  constructor(seedOrRandom: IRandomGenerator | number = Math.random) {
+  constructor(seedOrRandom: RandomNumberGenerator | number = Math.random) {
     if (typeof seedOrRandom === 'number') {
       const xsadd = new XSAdd(seedOrRandom);
       this.randomGenerator = xsadd.random;
@@ -76,3 +76,4 @@ export default class Random {
 }
 
 export * from './Options';
+export * from './RandomNumberGenerator';

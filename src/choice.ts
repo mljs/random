@@ -1,22 +1,22 @@
 import { ChoiceOptions } from './Options';
-import IRandomGenerator from './RandomGenerator';
+import { RandomNumberGenerator } from './RandomNumberGenerator';
 
 const PROB_TOLERANCE = 0.00000001;
 
 function randomChoice<T>(
   values: T[],
   options?: ChoiceOptions,
-  random?: IRandomGenerator,
+  random?: RandomNumberGenerator,
 ): T[];
 function randomChoice(
   values: number,
   options?: ChoiceOptions,
-  random?: IRandomGenerator,
+  random?: RandomNumberGenerator,
 ): number[];
 function randomChoice<T>(
   values: T[] | number,
   options: ChoiceOptions = {},
-  random: IRandomGenerator = Math.random,
+  random: RandomNumberGenerator = Math.random,
 ): Array<T | number> {
   const { size = 1, replace = false, probabilities } = options;
 
@@ -78,7 +78,7 @@ function getArray(n: number) {
 
 function randomIndex(
   n: number,
-  random: IRandomGenerator,
+  random: RandomNumberGenerator,
   cumSum: number[] | undefined,
 ) {
   const rand = random();

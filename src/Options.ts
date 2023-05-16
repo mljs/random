@@ -1,7 +1,7 @@
 /**
  * The options object for random.choice
  */
-export interface IChoiceOptions {
+export interface ChoiceOptions {
   /**
    * number of element to choose
    */

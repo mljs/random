@@ -1,6 +1,6 @@
 import XSAdd from 'ml-xsadd';
 
-import { IChoiceOptions } from './Options';
+import { ChoiceOptions } from './Options';
 import IRandomGenerator from './RandomGenerator';
 import choice from './choice';
 
@@ -28,11 +28,11 @@ export default class Random {
    * @return The choosen values
    */
 
-  public choice<T>(values: T[], options?: IChoiceOptions): T[];
-  public choice(values: number, options?: IChoiceOptions): number[];
+  public choice<T>(values: T[], options?: ChoiceOptions): T[];
+  public choice(values: number, options?: ChoiceOptions): number[];
   public choice<T>(
     values: T[] | number,
-    options?: IChoiceOptions,
+    options?: ChoiceOptions,
   ): Array<T | number> {
     if (typeof values === 'number') {
       return choice(values, options, this.randomGenerator);
@@ -74,3 +74,5 @@ export default class Random {
     return result;
   }
 }
+
+export * from './Options';

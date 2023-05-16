@@ -1,21 +1,21 @@
-import { IChoiceOptions } from './Options';
+import { ChoiceOptions } from './Options';
 import IRandomGenerator from './RandomGenerator';
 
 const PROB_TOLERANCE = 0.00000001;
 
 function randomChoice<T>(
   values: T[],
-  options?: IChoiceOptions,
+  options?: ChoiceOptions,
   random?: IRandomGenerator,
 ): T[];
 function randomChoice(
   values: number,
-  options?: IChoiceOptions,
+  options?: ChoiceOptions,
   random?: IRandomGenerator,
 ): number[];
 function randomChoice<T>(
   values: T[] | number,
-  options: IChoiceOptions = {},
+  options: ChoiceOptions = {},
   random: IRandomGenerator = Math.random,
 ): Array<T | number> {
   const { size = 1, replace = false, probabilities } = options;

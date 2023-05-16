@@ -20,7 +20,7 @@ function randomChoice<T>(
 ): Array<T | number> {
   const { size = 1, replace = false, probabilities } = options;
 
-  let valuesArr: number[] | T[];
+  let valuesArr: Array<number | T>;
   let cumSum: number[] | undefined;
   if (typeof values === 'number') {
     valuesArr = getArray(values);

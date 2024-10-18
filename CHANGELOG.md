@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/mljs/random/compare/v1.0.1...v2.0.0) (2024-10-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove default export. You need to "import {Random} from 'ml-random'"
+
+### Features
+
+* Remove default export. You need to "import {Random} from 'ml-random'" ([2da2fb4](https://github.com/mljs/random/commit/2da2fb498d04f14ba3c287540b5dc9e777a478d3))
+
 ## [1.0.1](https://github.com/mljs/random/compare/v1.0.0...v1.0.1) (2023-05-16)
 
 

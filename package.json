@@ -1,6 +1,6 @@
 {
   "name": "ml-random",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Choose randomly from a selection of elements",
   "main": "lib/index.js",
   "module": "lib-esm/index.js",

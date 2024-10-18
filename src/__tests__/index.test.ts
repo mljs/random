@@ -1,4 +1,5 @@
-import XSAdd from 'ml-xsadd';
+import { XSadd } from 'ml-xsadd';
+import { it, describe, beforeEach, expect } from 'vitest';
 
 import Random from '..';
 
@@ -21,7 +22,7 @@ describe('random.choice', () => {
   });
 
   it('should select elements without replacement', () => {
-    const xsadd = new XSAdd(28);
+    const xsadd = new XSadd(28);
     random = new Random(xsadd.random);
     expect(random.choice(10, { size: 10 })).toMatchSnapshot();
   });
@@ -47,10 +48,7 @@ describe('random.choice', () => {
       replace: true,
       probabilities: [0.3, 0.7],
     });
-    const count = r.reduce(
-      (prev, current) => (current === 0 ? prev + 1 : prev),
-      0,
-    );
+    const count = r.filter((value) => value === 0).length;
     expect(count / samples).toBeCloseTo(0.3, 2);
   });
 
@@ -90,8 +88,8 @@ describe('random.randomSample', () => {
   it('should generate an array of random numbers', () => {
     const numbers = random.randomSample(10);
     expect(numbers).toHaveLength(10);
-    numbers.forEach((num) => expect(num).toBeLessThan(1));
-    numbers.forEach((num) => expect(num).toBeGreaterThanOrEqual(0));
+    for (const num of numbers) expect(num).toBeLessThan(1);
+    for (const num of numbers) expect(num).toBeGreaterThanOrEqual(0);
     expect(numbers).toMatchSnapshot();
   });
 });
@@ -130,8 +128,5 @@ describe('random.randInt', () => {
 });
 
 function freq(arr: number[], n: number) {
-  return (
-    arr.reduce((prev, current) => (current === n ? prev + 1 : prev), 0) /
-    arr.length
-  );
+  return arr.filter((value) => value === n).length / arr.length;
 }

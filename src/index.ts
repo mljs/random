@@ -1,4 +1,4 @@
-import XSAdd from 'ml-xsadd';
+import { XSadd } from 'ml-xsadd';
 
 import { ChoiceOptions } from './Options';
 import { RandomNumberGenerator } from './RandomNumberGenerator';
@@ -14,7 +14,7 @@ export default class Random {
    */
   constructor(seedOrRandom: RandomNumberGenerator | number = Math.random) {
     if (typeof seedOrRandom === 'number') {
-      const xsadd = new XSAdd(seedOrRandom);
+      const xsadd = new XSadd(seedOrRandom);
       this.randomGenerator = xsadd.random;
     } else {
       this.randomGenerator = seedOrRandom;
@@ -25,7 +25,7 @@ export default class Random {
    * Returns an array of elements choosen from a list
    * @param values  - The values to choose from. If a number, the list will be a range of integer from 0 to that number.
    * @param options - option object
-   * @return The choosen values
+   * @returns The choosen values
    */
 
   public choice<T>(values: T[], options?: ChoiceOptions): T[];
@@ -42,7 +42,7 @@ export default class Random {
 
   /**
    * Draw a random number from a uniform distribution on [0,1)
-   * @return The random number
+   * @returns The random number
    */
   public random(): number {
     return this.randomGenerator();
@@ -64,7 +64,7 @@ export default class Random {
   /**
    * Draw several random number from a uniform distribution on [0, 1)
    * @param size - The number of number to draw
-   * @return - The list of drawn numbers.
+   * @returns - The list of drawn numbers.
    */
   public randomSample(size: number): number[] {
     const result: number[] = [];

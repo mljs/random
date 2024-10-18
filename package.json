@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/mljs/random#readme",
   "dependencies": {
-    "ml-xsadd": "^3.0.0"
+    "ml-xsadd": "^3.0.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.25.7",

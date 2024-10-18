@@ -1,7 +1,7 @@
 import { XSadd } from 'ml-xsadd';
 import { it, describe, beforeEach, expect } from 'vitest';
 
-import Random from '..';
+import { Random } from '../Random';
 
 let random: Random;
 describe('random.choice', () => {

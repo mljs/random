@@ -14,7 +14,7 @@ Randomness utilities from a selection of elements.
 ## Usage
 
 ```js
-const Random = require('ml-random').default;
+const { Random } = require('ml-random');
 ```
 
 ## [API Documentation](https://mljs.github.io/random/)

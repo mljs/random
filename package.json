@@ -2,27 +2,26 @@
   "name": "ml-random",
   "version": "2.0.0",
   "description": "Choose randomly from a selection of elements",
-  "main": "lib/index.js",
-  "module": "lib-esm/index.js",
-  "types": "lib/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": "./lib/index.js"
+  },
   "files": [
-    "src",
     "lib",
-    "lib-esm"
+    "src"
   ],
   "scripts": {
-    "clean": "rimraf lib lib-esm",
     "check-types": "tsc --noEmit",
-    "eslint": "eslint --cache ./src",
-    "eslint-fix": "npm run eslint -- --fix",
+    "clean": "rimraf coverage lib",
+    "eslint": "eslint .",
+    "eslint-fix": "eslint . --fix",
     "prepack": "npm run tsc",
-    "prettier": "prettier --check src",
-    "prettier-write": "prettier --write src",
-    "test": "npm run test-only && npm run eslint && npm run prettier && npm run check-types",
+    "prettier": "prettier --check .",
+    "prettier-write": "prettier --write .",
+    "test": "npm run test-only && npm run check-types && npm run eslint && npm run prettier",
     "test-only": "vitest run --coverage",
-    "tsc": "npm run clean && npm run tsc-cjs && npm run tsc-esm",
-    "tsc-cjs": "tsc --project tsconfig.cjs.json",
-    "tsc-esm": "tsc --project tsconfig.esm.json"
+    "tsc": "npm run clean && npm run tsc-build",
+    "tsc-build": "tsc --project tsconfig.build.json"
   },
   "repository": {
     "type": "git",
@@ -39,14 +38,14 @@
     "ml-xsadd": "^3.0.1"
   },
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.25.9",
-    "@babel/preset-typescript": "^7.26.0",
-    "@vitest/coverage-v8": "^2.1.4",
-    "eslint": "^9.14.0",
-    "eslint-config-cheminfo-typescript": "^16.0.0",
-    "prettier": "^3.3.3",
-    "rimraf": "^6.0.1",
-    "typescript": "^5.6.3",
-    "vitest": "^2.1.4"
+    "@types/node": "^26.6.6",
+    "@vitest/coverage-v8": "^4.1.12",
+    "@zakodium/tsconfig": "^1.0.5",
+    "eslint": "^10.15.0",
+    "eslint-config-cheminfo-typescript": "^23.0.0",
+    "prettier": "^3.10.1",
+    "rimraf": "^6.1.4",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.12"
   }
 }

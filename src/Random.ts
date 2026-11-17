@@ -1,8 +1,8 @@
 import { XSadd } from 'ml-xsadd';
 
-import { ChoiceOptions } from './Options';
-import { RandomNumberGenerator } from './RandomNumberGenerator';
-import choice from './choice';
+import type { ChoiceOptions } from './Options.ts';
+import type { RandomNumberGenerator } from './RandomNumberGenerator.ts';
+import choice from './choice.ts';
 
 /**
  * @classdesc Random class

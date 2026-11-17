@@ -1,5 +1,5 @@
-import { ChoiceOptions } from './Options';
-import { RandomNumberGenerator } from './RandomNumberGenerator';
+import type { ChoiceOptions } from './Options.ts';
+import type { RandomNumberGenerator } from './RandomNumberGenerator.ts';
 
 const PROB_TOLERANCE = 0.00000001;
 
@@ -20,12 +20,12 @@ function randomChoice<T>(
 ): Array<T | number> {
   const { size = 1, replace = false, probabilities } = options;
 
-  let valuesArr: Array<number | T>;
-  let cumSum: number[] | undefined;
+  let valuesArray: Array<number | T>;
+  let cumSum: Float64Array | undefined;
   if (typeof values === 'number') {
-    valuesArr = getArray(values);
+    valuesArray = getArray(values);
   } else {
-    valuesArr = values.slice();
+    valuesArray = values.slice();
   }
 
   if (probabilities) {
@@ -35,61 +35,63 @@ function randomChoice<T>(
       );
     }
     // check input is sane
-    if (probabilities.length !== valuesArr.length) {
+    if (probabilities.length !== valuesArray.length) {
       throw new Error(
         'the length of probabilities option should be equal to the number of choices',
       );
     }
-    cumSum = [probabilities[0]];
-    for (let i = 1; i < probabilities.length; i++) {
-      cumSum[i] = cumSum[i - 1] + probabilities[i];
+    cumSum = new Float64Array(probabilities.length);
+    let sum = 0;
+    for (let i = 0; i < probabilities.length; i++) {
+      sum += probabilities[i] as number;
+      cumSum[i] = sum;
     }
 
-    //@ts-expect-error we know length is at least 1
-    if (Math.abs(1 - cumSum.at(-1)) > PROB_TOLERANCE) {
+    if (Math.abs(1 - sum) > PROB_TOLERANCE) {
       throw new Error(
-        `probabilities should sum to 1, but instead sums to ${cumSum.at(-1)}`,
+        `probabilities should sum to 1, but instead sums to ${sum}`,
       );
     }
   }
 
-  if (!replace && size > valuesArr.length) {
+  if (!replace && size > valuesArray.length) {
     throw new Error('size option is too large');
   }
   const result: Array<number | T> = [];
   for (let i = 0; i < size; i++) {
-    const index = randomIndex(valuesArr.length, random, cumSum);
-    result.push(valuesArr[index]);
+    const index = randomIndex(valuesArray.length, random, cumSum);
+    result.push(valuesArray[index] as number | T);
     if (!replace) {
-      valuesArr.splice(index, 1);
+      valuesArray.splice(index, 1);
     }
   }
   return result;
 }
 
 function getArray(n: number) {
-  const arr: number[] = [];
+  const array: number[] = [];
   for (let i = 0; i < n; i++) {
-    arr.push(i);
+    array.push(i);
   }
-  return arr;
+  return array;
 }
 
 function randomIndex(
   n: number,
   random: RandomNumberGenerator,
-  cumSum: number[] | undefined,
+  cumSum: Float64Array | undefined,
 ) {
   const rand = random();
   if (!cumSum) {
     return Math.floor(rand * n);
-  } else {
-    let idx = 0;
-    while (rand > cumSum[idx]) {
-      idx++;
-    }
-    return idx;
   }
+  // The probabilities may sum to slightly less than 1 (see PROB_TOLERANCE).
+  const lastIndex = cumSum.length - 1;
+  let index = 0;
+  while (index < lastIndex && rand > (cumSum[index] as number)) {
+    index++;
+  }
+  return index;
 }
 
 export default randomChoice;

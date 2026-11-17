@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/mljs/random/compare/v2.0.0...v2.1.0) (2026-11-17)
+
+
+### Features
+
+* migrate package to ESM TypeScript ([98919ef](https://github.com/mljs/random/commit/98919ef75a20628e42a0629f4247ebf6e9ad9342))
+
 ## [2.0.0](https://github.com/mljs/random/compare/v1.0.1...v2.0.0) (2024-10-18)
 
 ### ⚠ BREAKING CHANGES
